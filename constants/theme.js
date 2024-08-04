@@ -8,10 +8,11 @@ export const theme = {
         danger: '#FF6347',
         success: '#4BB543',
         warning: '#F5A623',
+        hisarText: '#1F41BB',
+        serinText: '#1F8CBB',
+        maviRenk: '#1F41BB'
     },
-    fonts: {
-        primary: 'Roboto',
-    },
+
     fontSizes: {
         h1: 32,
         h2: 24,
