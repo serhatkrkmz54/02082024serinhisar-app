@@ -7,6 +7,7 @@ import { theme } from '../constants/theme'
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
+import Button from '../components/Button'
 
 const Welcome = () => {
       const [loaded, error] = useFonts({
@@ -38,6 +39,19 @@ const Welcome = () => {
                 <Text style={styles.hisarText}>SERİN</Text>HİSAR</Text>
                 <Text style={styles.welcomeText1}>Serinhisar için{"\n"}büyük yenilik!</Text>
                 <Text style={styles.welcomeText2}>İçeride olanı keşfetmek için iki seçeneğin var! {"\n"}Giriş yap ya da Kayıt ol!</Text>
+            </View>
+
+            <View style={styles.anasayfaButonGrubu}>
+                <Button 
+                    title='Giriş Yap'
+                    buttonStyle={{marginHorizontal:wp(3)}}
+                    onPress={()=>{}}
+                />
+                <Button 
+                    title='Kayıt Ol'
+                    buttonStyle={{backgroundColor:'#000'}}
+                    onPress={()=>{}}
+                />
             </View>
         </View>
     </EkranAyirici>
@@ -95,7 +109,7 @@ const styles = StyleSheet.create({
     anaLogo: {
         alignSelf: 'center',
         height: 165,
-        width: 166
+        width: 166,
     },
     serinText: {
         color: theme.colors.serinText,
@@ -108,6 +122,7 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 1,
         elevation: 5,
+        top:19
     },
     hisarText: {
         color: theme.colors.hisarText,
@@ -119,10 +134,19 @@ const styles = StyleSheet.create({
         color: theme.colors.maviRenk,
         fontSize: hp(4),
         textAlign: 'center',
-        fontFamily: 'Poppins-SemiBold'
+        fontFamily: 'Poppins-SemiBold',
+        paddingHorizontal: wp(10),
+        top:10
     },
     welcomeText2: {
         textAlign: 'center',
-        fontFamily: 'Poppins-Regular'
+        fontFamily: 'Poppins-Regular',
+        paddingHorizontal: wp(7),
+        top:23
+    },
+    anasayfaButonGrubu: {
+        flex:2,
+        flexDirection: 'row',
+        top:88
     }
 })
