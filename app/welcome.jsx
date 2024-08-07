@@ -7,7 +7,8 @@ import { theme } from '../constants/theme'
 import { useFonts } from 'expo-font';
 import { useEffect } from 'react';
 import * as SplashScreen from 'expo-splash-screen';
-import Button from '../components/Button'
+import ButtonGroup from '../components/ButtonGroup'
+import { useRouter } from 'expo-router'
 
 const Welcome = () => {
       const [loaded, error] = useFonts({
@@ -16,42 +17,41 @@ const Welcome = () => {
             'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
         });
 
-        useEffect(() => {
-            if (loaded || error) {
-            SplashScreen.hideAsync();
-            }
-        }, [loaded, error]);
-
-        if (!loaded && !error) {
-            return null;
-        }
+        const router = useRouter();
   return (
     <EkranAyirici bg="white">
         <StatusBar style="dark" />
         <View style={styles.container}>
+            {/* Arkaplan daire ve kare çizimleri burada işleniyor. */}
              <View style={styles.backgroundDaire} />
              <View style={styles.backgroundDaire2} />
-            <View style={styles.backgroundKare} />
-            <View style={styles.backgroundKare2} />
+             <View style={styles.backgroundKare} />
+             <View style={styles.backgroundKare2} />
+            {/* Bitiş */}
+
+            {/* Anasayfa logo burada işleniyor. */}
             <Image style={styles.anaLogo} resizeMode='contain' source={require('../assets/images/anaLogo.png')} />
+            {/* Bitiş */}
+
+            {/* Anasayfadaki tüm yazılar burada işleniyor */}
             <View style={{gap:20}}>
                 <Text style={styles.serinText}>
                 <Text style={styles.hisarText}>SERİN</Text>HİSAR</Text>
                 <Text style={styles.welcomeText1}>Serinhisar için{"\n"}büyük yenilik!</Text>
                 <Text style={styles.welcomeText2}>İçeride olanı keşfetmek için iki seçeneğin var! {"\n"}Giriş yap ya da Kayıt ol!</Text>
             </View>
+            {/* Bitiş */}
 
+            {/* Anasayfa butonları burada işleniyor- Giriş Yap ve Kayıt Ol */}
             <View style={styles.anasayfaButonGrubu}>
-                <Button 
-                    title='Giriş Yap'
-                    buttonStyle={{marginHorizontal:wp(3)}}
-                    onPress={()=>{}}
-                />
-                <Button 
-                    title='Kayıt Ol'
-                    buttonStyle={{backgroundColor:'#000'}}
-                    onPress={()=>{}}
-                />
+                <ButtonGroup />
+            </View>
+            {/* Bitiş */}
+
+            <View style={styles.footerTextContainer}>
+                <Text style={styles.notLoginText} onPress={()=> router.push('index')}>
+                    Üye olmadan devam et {'->'}
+                </Text>
             </View>
         </View>
     </EkranAyirici>
@@ -110,6 +110,7 @@ const styles = StyleSheet.create({
         alignSelf: 'center',
         height: 165,
         width: 166,
+        top: 30
     },
     serinText: {
         color: theme.colors.serinText,
@@ -122,7 +123,7 @@ const styles = StyleSheet.create({
         textShadowOffset: { width: 1, height: 1 },
         textShadowRadius: 1,
         elevation: 5,
-        top:19
+        top:35
     },
     hisarText: {
         color: theme.colors.hisarText,
@@ -148,5 +149,18 @@ const styles = StyleSheet.create({
         flex:2,
         flexDirection: 'row',
         top:88
+    },
+    footerTextContainer: {
+        flexDirection: 'row',
+        justifyContent:'center',
+        alignItems: 'center',
+        gap: 5
+    },
+    notLoginText: {
+        textAlign:'center',
+        color: theme.colors.maviRenk,
+        fontSize: hp(1.7),
+        fontFamily: 'Poppins-SemiBold',
+        paddingVertical: hp(12)
     }
 })

@@ -7,7 +7,7 @@ const index = () => {
     const router = useRouter();
   return (
     <EkranAyirici>
-      <Text>index</Text>
+      <Text>Anasayfa</Text>
       <Button title="Welcome" onPress={()=>router.push('welcome')} />
     </EkranAyirici>
   )
