@@ -4,31 +4,15 @@ import EkranAyirici from '../components/EkranAyirici'
 import { StatusBar } from 'expo-status-bar'
 import { hp, wp } from '../helpers/common'
 import { theme } from '../constants/theme'
-import { useFonts } from 'expo-font';
-import { useEffect } from 'react';
-import * as SplashScreen from 'expo-splash-screen';
 import ButtonGroup from '../components/ButtonGroup'
 import { useRouter } from 'expo-router'
 
 const Welcome = () => {
-      const [loaded, error] = useFonts({
-            'Poppins-ExtraBold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
-            'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
-            'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
-        });
-
-        const router = useRouter();
+  const router = useRouter();
   return (
-    <EkranAyirici bg="white">
-        <StatusBar style="dark" />
+    <EkranAyirici>
+        <StatusBar/>
         <View style={styles.container}>
-            {/* Arkaplan daire ve kare çizimleri burada işleniyor. */}
-             <View style={styles.backgroundDaire} />
-             <View style={styles.backgroundDaire2} />
-             <View style={styles.backgroundKare} />
-             <View style={styles.backgroundKare2} />
-            {/* Bitiş */}
-
             {/* Anasayfa logo burada işleniyor. */}
             <Image style={styles.anaLogo} resizeMode='contain' source={require('../assets/images/anaLogo.png')} />
             {/* Bitiş */}
@@ -65,46 +49,7 @@ const styles = StyleSheet.create({
         flex: 1,
         alignItems: 'center',
         justifyContent: 'space-around',
-        backgroundColor: 'white',
         paddingHorizontal: wp(4) 
-    },
-    backgroundDaire: {
-        position: 'absolute',
-        top: -90,
-        right: -90,
-        width: 350,
-        height: 350,
-        borderRadius: 350,
-        backgroundColor: 'rgba(248, 249, 255, 0.8)'
-    },
-    backgroundDaire2: {
-        position: 'absolute',
-        top: -40,
-        right: -40,
-        width: 400,
-        height: 400,
-        borderRadius: 500,
-        borderWidth: 5,
-        borderColor: 'rgba(248, 249, 255, 0.8)',
-    },
-    backgroundKare: {
-        position: 'absolute',
-        bottom: -90,
-        left: -200,
-        width: 350,
-        height: 350,
-        borderWidth: 5,
-        borderColor: 'rgba(248, 249, 255, 0.8)',
-    },
-    backgroundKare2: {
-        position: 'absolute',
-        bottom: -120,
-        left: -90,
-        width: 300,
-        height: 300,
-        borderWidth: 5,
-        borderColor: 'rgba(248, 249, 255, 0.8)',
-        transform: [{ rotate: '25deg' }],
     },
     anaLogo: {
         alignSelf: 'center',
