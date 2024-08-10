@@ -13,6 +13,7 @@ const index = () => {
     'Poppins-ExtraBold': require('../assets/fonts/Poppins-ExtraBold.ttf'),
     'Poppins-SemiBold': require('../assets/fonts/Poppins-SemiBold.ttf'),
     'Poppins-Regular': require('../assets/fonts/Poppins-Regular.ttf'),
+    'Poppins-Bold': require('../assets/fonts/Poppins-Bold.ttf'),
     'SpaceMono-Regular': require('../assets/fonts/SpaceMono-Regular.ttf'),
   });
 useEffect(() => {

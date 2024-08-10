@@ -10,7 +10,8 @@ export const theme = {
         warning: '#F5A623',
         hisarText: '#1F41BB',
         serinText: '#1F8CBB',
-        maviRenk: '#1F41BB'
+        maviRenk: '#1F41BB',
+        inputText: '#626262'
     },
 
     fontSizes: {

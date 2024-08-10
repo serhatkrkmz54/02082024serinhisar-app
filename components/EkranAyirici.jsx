@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
     width: 350,
     height: 350,
     borderRadius: 350,
-    backgroundColor: 'rgba(248, 249, 255, 0.8)',
+    backgroundColor: 'rgba(237, 240, 250, 0.8)',
   },
   backgroundDaire2: {
     position: 'absolute',
@@ -35,7 +35,7 @@ const styles = StyleSheet.create({
     height: 400,
     borderRadius: 500,
     borderWidth: 5,
-    borderColor: 'rgba(248, 249, 255, 0.8)',
+    borderColor: 'rgba(237, 240, 250, 0.8)',
   },
   backgroundKare: {
     position: 'absolute',
@@ -44,7 +44,7 @@ const styles = StyleSheet.create({
     width: 350,
     height: 350,
     borderWidth: 5,
-    borderColor: 'rgba(248, 249, 255, 0.8)',
+    borderColor: 'rgba(237, 240, 250, 0.8)',
   },
   backgroundKare2: {
     position: 'absolute',
@@ -53,7 +53,7 @@ const styles = StyleSheet.create({
     width: 300,
     height: 300,
     borderWidth: 5,
-    borderColor: 'rgba(248, 249, 255, 0.8)',
+    borderColor: 'rgba(237, 240, 250, 0.8)',
     transform: [{ rotate: '25deg' }],
   },
 })

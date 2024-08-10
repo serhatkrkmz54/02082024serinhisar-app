@@ -18,6 +18,7 @@ const styles = StyleSheet.create({
         alignSelf: 'flex-start',
         padding:5,
         borderRadius: 19,
-        backgroundColor: 'rgba(0,0,0,0.07)'
+        backgroundColor: 'rgba(0,0,0,0.07)',
+        marginTop: 10
     }
 })

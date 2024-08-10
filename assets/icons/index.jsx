@@ -3,11 +3,19 @@ import React from 'react'
 import Home from './Home'
 import ArrowLeft from './ArrowLeft'
 import { theme } from '../../constants/theme'
+import Mail from './Mail'
+import Password from './Password'
+import Facebook from '../icons/SocialMedia/Facebook'
+import Google from '../icons/SocialMedia/Google'
 
 
 const icons= {
     home : Home,
-    arrowLeft: ArrowLeft
+    arrowLeft: ArrowLeft,
+    mail: Mail,
+    password: Password,
+    facebook: Facebook,
+    google: Google
 
 }
 const Icon = ({name, ...props}) => {
