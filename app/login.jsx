@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View } from 'react-native'
+import { Alert, Pressable, StyleSheet, Text, View } from 'react-native'
 import React, { useRef, useState } from 'react'
 import EkranAyirici from '../components/EkranAyirici'
 import { StatusBar } from 'expo-status-bar'
@@ -16,8 +16,11 @@ const login = () => {
   const emailRef = useRef("");
   const passwordRef = useRef("");
   const [loading, setLoading]= useState(false);
-  const onSubmit = () => {
-
+  const onSubmit = async () => {
+      if(emailRef.current || passwordRef.current){
+        Alert.alert('Giriş', "Lütfen tüm alanları doldurun.");
+        return;
+      }
   }
 
 
@@ -51,9 +54,11 @@ const login = () => {
           </Text>
           <View style={{marginTop: -20}}>
           <Button title={'Giriş Yap'} loading={loading} onPress={onSubmit} /></View>
+          <Pressable>
           <Text style={styles.kayitOlText}>
             Yeni kullanıcı oluştur!
           </Text>
+          </Pressable>
         </View>
         <View style={styles.socialMediaFooter}>
           <Text style={styles.platformGirisText}>
