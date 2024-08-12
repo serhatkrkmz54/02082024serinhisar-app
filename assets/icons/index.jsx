@@ -7,6 +7,7 @@ import Mail from './Mail'
 import Password from './Password'
 import Facebook from '../icons/SocialMedia/Facebook'
 import Google from '../icons/SocialMedia/Google'
+import RePassword from './RePassword'
 
 
 const icons= {
@@ -15,7 +16,8 @@ const icons= {
     mail: Mail,
     password: Password,
     facebook: Facebook,
-    google: Google
+    google: Google,
+    repassword: RePassword
 
 }
 const Icon = ({name, ...props}) => {

@@ -17,13 +17,11 @@ const login = () => {
   const passwordRef = useRef("");
   const [loading, setLoading]= useState(false);
   const onSubmit = async () => {
-      if(emailRef.current || passwordRef.current){
-        Alert.alert('Giriş', "Lütfen tüm alanları doldurun.");
+      if(!emailRef.current || !passwordRef.current){
+        Alert.alert('Giriş', "Lütfen tüm alanları doldurun.",[{text: 'Tamam'}]);
         return;
       }
   }
-
-
   return (
     <EkranAyirici>
       <StatusBar style="dark" />
@@ -53,9 +51,9 @@ const login = () => {
             Parolamı Unuttum!
           </Text>
           <View style={{marginTop: -20}}>
-          <Button title={'Giriş Yap'} loading={loading} onPress={onSubmit} /></View>
+          <Button title={'Giriş Yap'} loading={loading} onPress={onSubmit} hasShadow={true} /></View>
           <Pressable>
-          <Text style={styles.kayitOlText}>
+          <Text style={styles.kayitOlText} onPress={()=>router.push("signUp")}>
             Yeni kullanıcı oluştur!
           </Text>
           </Pressable>
