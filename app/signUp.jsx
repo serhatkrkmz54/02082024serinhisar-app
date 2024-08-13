@@ -9,18 +9,35 @@ import { theme } from '../constants/theme'
 import Input from '../components/Input'
 import Icon from '../assets/icons'
 import Button from '../components/Button';
+import axios from 'axios';
 
 const signUp = () => {
   const router = useRouter();
-  const emailRef = useRef("");
-  const passwordRef = useRef("");
+  const [email, setEmail] = useState('');
+  const [sifre, setSifre] = useState('');
   const rePasswordRef = useRef("");
+  const [mesaj, setMesaj] = useState("");
   const [loading, setLoading]= useState(false);
-  const onSubmit = async () => {
-      if(!emailRef.current || !passwordRef.current || !rePasswordRef.current){
-        Alert.alert('Kayıt Ol', "Lütfen tüm alanları doldurun.",[{text: 'Tamam'}]);
-        return;
-      }
+  const LOGIN_ENDPOINT = 'http://10.0.2.2:8090/register';
+
+  const onSubmit = () => {
+    if(!email.current || !sifre.current || !rePasswordRef.current) {
+    Alert.alert('HATA', 'Lütfen tüm alanları doldurun!', [{text:'Tamam'}])
+    return;
+    }
+      axios.post(LOGIN_ENDPOINT, {
+      email: email,
+      sifre: sifre,
+    })
+    .then(response => {
+    console.log('Kayıt Başarılı', response.data);
+  })
+  .catch(error => {
+    console.error('Kayıt Hatası', error.response);
+    Alert.alert('Kayıt Hatası', 'Please check your credentials and try again.');
+  });
+
+      setLoading(true);
   }
   return (
     <EkranAyirici>
@@ -38,24 +55,28 @@ const signUp = () => {
           icon={<Icon name="mail" size={26} strokeWidth={1.6} />}
           placeholder="E-Mail adresi belirleyin"
           placeholderTextColor={'#626262'}
-          onChangeText={value=> emailRef.current = value}
+          value={email}
+          onChangeText={setEmail}
           />
           <Input 
           icon={<Icon name="password" size={26} strokeWidth={1.6} />}
           placeholder="Parola belirleyin"
           secureTextEntry
+          value={sifre}
           placeholderTextColor={'#626262'}
-          onChangeText={value=> passwordRef.current = value}
+          onChangeText={setSifre}
           />
-          <Input 
+          {/* <Input 
           icon={<Icon name="repassword" size={26} strokeWidth={1.6} />}
           placeholder="Parolayı tekrar girin"
           secureTextEntry
           placeholderTextColor={'#626262'}
           onChangeText={value=> rePasswordRef.current = value}
-          />
+          /> */}
           <View style={{marginTop:10}}>
-          <Button title={'Kaydı Tamamla'} loading={loading} onPress={onSubmit} hasShadow={true} /></View>
+          <Button title={'Kaydı Tamamla'} loading={loading} onPress={onSubmit} hasShadow={true} />
+          {mesaj ? <Text>{mesaj}</Text> : null}
+          </View>
         </View>
         <View style={styles.socialMediaFooter}>
         <Pressable>
