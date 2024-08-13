@@ -10,7 +10,6 @@ import Input from '../components/Input'
 import Icon from '../assets/icons'
 import Button from '../components/Button';
 
-
 const signUp = () => {
   const router = useRouter();
   const emailRef = useRef("");
