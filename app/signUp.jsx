@@ -20,24 +20,44 @@ const signUp = () => {
   const [loading, setLoading]= useState(false);
   const LOGIN_ENDPOINT = 'http://10.0.2.2:8090/register';
 
+  const validateEmail = (email) => {
+      const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+      return emailRegex.test(email);
+  };
   const onSubmit = () => {
-    if(!email.current || !sifre.current || !rePasswordRef.current) {
+    if(!email || !sifre || !rePasswordRef.current) {
     Alert.alert('HATA', 'Lütfen tüm alanları doldurun!', [{text:'Tamam'}])
     return;
     }
+    if (!validateEmail(email)) {
+    Alert.alert('HATA', 'Geçerli bir e-posta adresi girin!', [{ text: 'Tamam' }]);
+    return;
+      }
+     if(sifre !== rePasswordRef.current) {
+         Alert.alert('HATA', 'Parolalar uyuşmuyor!', [{text:'Tamam'}]);
+         return;
+     }
+      setLoading(true);
       axios.post(LOGIN_ENDPOINT, {
       email: email,
       sifre: sifre,
     })
     .then(response => {
-    console.log('Kayıt Başarılı', response.data);
+    setLoading(false); 
+    Alert.alert('Kayıt Başarılı', 'Giriş sayfasına giderek giriş yapabilirsiniz.', [{ text: 'Tamam' }]);
+    setEmail('');
+    setSifre('');
   })
   .catch(error => {
-    console.error('Kayıt Hatası', error.response);
-    Alert.alert('Kayıt Hatası', 'Please check your credentials and try again.');
+      setLoading(false); 
+      if (error.response && error.response.status === 409) {
+        // HTTP 409 durumu, e-posta zaten kayıtlı olduğu anlamına gelir.
+        Alert.alert('Kayıt Hatası', 'Bu e-posta adresi zaten kayıtlı. Başka bir e-posta ile deneyin', [{ text: 'Tamam' }]);
+      } else {
+        Alert.alert('Kayıt Hatası', 'Lütfen bilgilerinizi kontrol edip tekrar deneyin.');
+      }
   });
 
-      setLoading(true);
   }
   return (
     <EkranAyirici>
@@ -66,13 +86,13 @@ const signUp = () => {
           placeholderTextColor={'#626262'}
           onChangeText={setSifre}
           />
-          {/* <Input 
+          <Input 
           icon={<Icon name="repassword" size={26} strokeWidth={1.6} />}
           placeholder="Parolayı tekrar girin"
           secureTextEntry
           placeholderTextColor={'#626262'}
           onChangeText={value=> rePasswordRef.current = value}
-          /> */}
+          />
           <View style={{marginTop:10}}>
           <Button title={'Kaydı Tamamla'} loading={loading} onPress={onSubmit} hasShadow={true} />
           {mesaj ? <Text>{mesaj}</Text> : null}
